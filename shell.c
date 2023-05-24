@@ -18,7 +18,10 @@ void my_shell()
 		n_read = getline(&temp, &bytes, stdin);
 
 		if (n_read == -1)
-			return;
+		{
+			write(STDOUT_FILENO, "EXIT SHELL...\n", 14);
+			exit(EXIT_SUCCESS);
+		}
 
 		if (strcmp(temp, "exit\n") == 0)
 		{
