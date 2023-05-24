@@ -12,7 +12,7 @@ void my_shell(void)
 
 	while (1)
 	{
-		write(1, "Shell$", 7);
+		write(1, "Shell$ ", 7);
 		n_read = getline(&temp, &bytes, stdin);
 
 		if (n_read == -1)
@@ -23,14 +23,12 @@ void my_shell(void)
 			exit(0);
 		}
 
-			int ntokens = 0;
-			char **argv = parse_token(temp, &ntokens);
+		int ntokens = 0;
+		char **argv = parse_token(temp, &ntokens);
 
-			printf("%d\n", ntokens);
+		executeprogram(argv);
 
-			executeprogram(argv);
-
-			free(argv);
+		free(argv);
 	}
 
 	free(temp);
