@@ -13,7 +13,6 @@
 
 void my_shell();
 char **parse_token(char *temp, int *ntokens);
-char _strtok(char *str, const char *delim);
 void executeprogram(char **argv);
 char *_getenv(const char *name);
 

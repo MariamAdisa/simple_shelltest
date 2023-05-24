@@ -4,11 +4,13 @@
  * Return: Always 0
  */
 
-void my_shell(void)
+void my_shell()
 {
 	char *temp = NULL;
 	size_t bytes = 0;
 	ssize_t n_read;
+	int ntokens = 0;
+	char **argv;
 
 	while (1)
 	{
@@ -23,8 +25,7 @@ void my_shell(void)
 			exit(0);
 		}
 
-		int ntokens = 0;
-		char **argv = parse_token(temp, &ntokens);
+		argv = parse_token(temp, &ntokens);
 
 		executeprogram(argv);
 
