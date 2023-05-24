@@ -1,38 +1,45 @@
 #include "main.h"
 
+/**
+ * parse_token - parses token from command line
+ * @temp: input string
+ * @ntokens: number of tokens
+ * Return: pointer to a string
+ */
+
 char **parse_token(char *temp, int *ntokens)
 {
-        char *token;
-        char *delim = " \n";
-        char *temp_copy;
-        char **argv = NULL;
-        int i = 0;
+	char *token;
+	char *delim = " \n";
+	char *temp_copy;
+	char **argv = NULL;
+	int i = 0;
 
-        *ntokens = 0;
+	*ntokens = 0;
 
-        temp_copy = strdup(temp);
+	temp_copy = strdup(temp);
 
-        token = strtok(temp_copy, delim);
+	token = strtok(temp_copy, delim);
 
-        while (token)
-        {
-                token = strtok(NULL, delim);
-                (*ntokens)++;
-        }
+	while (token)
+	{
+		token = strtok(NULL, delim);
+		(*ntokens)++;
+	}
 
-        argv = malloc(sizeof(char *) * (*ntokens + 1));
+	argv = malloc(sizeof(char *) * (*ntokens + 1));
 
-        token = strtok(temp, delim);
+	token = strtok(temp, delim);
 
-        while (token)
-        {
-                argv[i] = token;
-                token = strtok(NULL, delim);
-                i++;
-        }
-        argv[i] = NULL;
+	while (token)
+	{
+		argv[i] = token;
+		token = strtok(NULL, delim);
+		i++;
+	}
+	argv[i] = NULL;
 
-        free(temp_copy);
+	free(temp_copy);
 
-        return (argv);
+	return (argv);
 }
