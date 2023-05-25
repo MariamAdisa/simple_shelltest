@@ -11,7 +11,7 @@
 #define MAX_COMMAND_LENGTH 1024
 #define MAX_ARGS 64
 
-void my_shell();
+void my_shell(void);
 char **parse_token(char *temp, int *ntokens);
 void executeprogram(char **argv);
 char *_getenv(const char *name);
