@@ -16,21 +16,21 @@ void my_shell(void)
 	{
 		if (isatty(STDIN_FILENO))
 			write(1, "Shell$ ", 7);
-		
+
 		n_read = getline(&temp, &bytes, stdin);
 
 		if (n_read == -1)
 		{
 			break;
 		}
-		
+
 		if (strcmp(temp, "exit\n") == 0)
 		{
 			exit(0);
 		}
 
 		argv = parse_token(temp, &ntokens);
-		
+
 		executeprogram(argv);
 
 		free(argv);
