@@ -10,7 +10,7 @@ void my_shell(void)
 	size_t bytes = 0;
 	ssize_t n_read;
 	int ntokens = 0;
-	char **argv;
+	char **argv = NULL;
 
 	while (1)
 	{
@@ -24,12 +24,19 @@ void my_shell(void)
 			break;
 		}
 
-		if (strcmp(temp, "exit\n") == 0)
-		{
-			exit(0);
-		}
-
 		argv = parse_token(temp, &ntokens);
+
+		if (strcmp(argv[0], "exit") == 0)
+		{
+			if (argv[1] == NULL)
+			{
+				exit(0);
+			}
+			else
+			{
+				write(1, "exit: Too many arguments\n", 25);
+			}
+		}
 
 		executeprogram(argv);
 
