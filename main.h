@@ -7,13 +7,43 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <string.h>
+#include <sys/stat.h>
+#include <stddef.h>
 
 #define MAX_COMMAND_LENGTH 1024
 #define MAX_ARGS 64
 
+extern char **environ;
+
+/**
+ * struct list_t - A new struct type defining a linked list.
+ * @dir: A directory path.
+ * @next: A pointer to another struct list_t
+ */
+
+typedef struct list_t
+{
+	char *dir;
+	struct list_t *next;
+} list_t;
+
 void my_shell(void);
 char **parse_token(char *temp, int *ntokens);
 void executeprogram(char **argv);
-char *_getenv(const char *name);
+char *get_path(char *command);
+list_t *get_path_directory(char *path);
+char **_getenv(const char *var);
+
+list_t *add_node_end(list_t **head, char *dir);
+void free_list(list_t *head);
+
+char *_strcat(char *dest, char *src);
+char *_strncat(char *dest, char *src, int n);
+char *_strcpy(char *dest, char *src);
+int _strlen(const char *s);
+int _strncmp(const char *s1, const char *s2, size_t n);
+char **_strtok(char *line, char *delim);
+int count_tokens(char *str, char *delim);
+int token_len(char *str, char *delim);
 
 #endif
