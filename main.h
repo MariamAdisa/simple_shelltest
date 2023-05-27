@@ -10,8 +10,7 @@
 #include <sys/stat.h>
 #include <stddef.h>
 
-#define MAX_COMMAND_LENGTH 1024
-#define MAX_ARGS 64
+#define BUFFER_SIZE 1024
 
 extern char **environ;
 
@@ -33,6 +32,9 @@ void executeprogram(char **argv);
 char *get_path(char *command);
 list_t *get_path_directory(char *path);
 char **_getenv(const char *var);
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
+void assign_lineptr(char **lineptr, size_t *n, char *buffer, size_t b);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
 list_t *add_node_end(list_t **head, char *dir);
 void free_list(list_t *head);
