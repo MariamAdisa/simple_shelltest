@@ -17,7 +17,7 @@ void my_shell(void)
 		if (isatty(STDIN_FILENO))
 			write(1, "Shell$ ", 7);
 
-		n_read = _getline(&temp, &bytes, stdin);
+		n_read = _getline(&temp, &bytes, STDIN_FILENO);
 
 		if (n_read == -1)
 		{
